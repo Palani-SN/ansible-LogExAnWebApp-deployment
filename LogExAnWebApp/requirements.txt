@@ -1,0 +1,6 @@
+fastapi
+Flask
+uvicorn
+pandas
+lark-parser
+LogExAn

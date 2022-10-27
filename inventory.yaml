@@ -1,0 +1,10 @@
+virtualmachines:
+  hosts:
+    vm01:
+      ansible_host: 127.0.0.1
+      ansible_ssh_port: 22
+      ansible_ssh_user: openssh
+      ansible_ssh_pass: password
+      ansible_ssh_common_args: "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
+
+      

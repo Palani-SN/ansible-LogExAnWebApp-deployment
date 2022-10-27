@@ -1,0 +1,94 @@
+- name: setup_task
+  import_playbook: setup.yaml
+
+- name: User definitions
+  hosts: virtualmachines
+  become: true
+  tasks:
+    - name: create a new user
+      ansible.builtin.user:
+        name: openssh
+        state: present
+        group: primary-group
+        groups: root
+
+- name: Connection & Version Check
+  hosts: virtualmachines
+  tasks:
+    - name: Ping my hosts
+      ansible.builtin.ping:
+    - name: Print message
+      ansible.builtin.debug:
+        msg: Hello world
+    - name: Print version
+      ansible.builtin.shell: "cat /etc/os-release"
+      register: command_output
+
+    - ansible.builtin.debug:
+        msg: "{{ command_output.stdout_lines }}"
+
+- name: project setup
+  hosts: virtualmachines
+  tasks:
+    - name: copy files
+      copy:
+        src: LogExAnWebApp
+        dest: /home/openssh/
+        # src: LogExAnWebApp/install.sh
+        # dest: /home/openssh/LogExAnWebApp/
+        directory_mode:
+
+- name: project environment setup
+  hosts: virtualmachines
+  tasks:
+    - name: installation of libraries from PYPI
+      ansible.builtin.shell: chmod +x -v install.sh && ./install.sh
+      args:
+        chdir: /home/openssh/LogExAnWebApp/
+      register: installation_output
+
+    - ansible.builtin.debug:
+        msg: "{{ installation_output.stdout_lines }}"
+
+    - name: run API
+      ansible.builtin.shell: chmod +x -v run_fastapi.sh && ./run_fastapi.sh
+      args:
+        chdir: /home/openssh/LogExAnWebApp/API/
+      register: uvicorn_output
+
+    - ansible.builtin.debug:
+        msg: "{{ uvicorn_output.stdout_lines }}"
+
+    - name: run UI
+      ansible.builtin.shell: chmod +x -v run_flask.sh && ./run_flask.sh
+      args:
+        chdir: /home/openssh/LogExAnWebApp/UI/
+      register: gunicorn_output
+
+    - ansible.builtin.debug:
+        msg: "{{ gunicorn_output.stdout_lines }}"
+
+    - name: run Status
+      ansible.builtin.shell: netstat -anpe
+      args:
+        chdir: /home/openssh/LogExAnWebApp/UI/
+      register: netstat_output
+
+    - ansible.builtin.debug:
+        msg: "{{ netstat_output.stdout_lines }}"
+
+- name: project open with url
+  hosts: 127.0.0.1
+  connection: local
+  tasks:
+    # - name: open in Browser
+    #   ansible.builtin.shell: "'/mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe' http://localhost:5000/"
+    #   args:
+    #     chdir: /mnt/f/ansible/
+
+    - name: Prompt for docker unmount
+      ansible.builtin.pause:
+        prompt: "go to http://localhost:5000/, Enter to unmount the docker after manual verification"
+
+- name: teardown_task
+  import_playbook: teardown.yaml

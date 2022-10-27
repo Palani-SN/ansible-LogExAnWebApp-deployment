@@ -1,0 +1,13 @@
+- name: Removing docker container
+  hosts: 127.0.0.1
+  connection: local
+  tasks:
+    - name: teardown - docker container with OpenSSH & Python Interpreter
+      ansible.builtin.shell: ./teardown.sh >> teardown_task.log
+    # Do not assume the inventory_hostname is resolvable and delay 10 seconds at start
+    - name: Waits for port 22 of any IP to close active connections, don't start checking for 10 seconds
+      ansible.builtin.wait_for:
+        host: 127.0.0.1
+        port: 22
+        delay: 10
+        state: drained

@@ -1,0 +1,1 @@
+ansible virtualmachines -m ping -i inventory.yaml
