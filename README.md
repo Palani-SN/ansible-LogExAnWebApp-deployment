@@ -1,4 +1,4 @@
-# ansible-sample-deployment
+# ansible-LogExAnWebApp-deployment
 
 - sample ansible deployment playbook file written with setup and teardown for demo purpose
 
@@ -8,49 +8,53 @@
 
 ![](https://github.com/Palani-SN/ansible-LogExAnWebApp-deployment/blob/main/images/root_folder.JPG?raw=true)
 
-- enter the **password** for the BECOME password, output of the **./test.sh** is shown below
+- enter the **password** for the BECOME password, output of the **./test.sh** is shown below, 
+when the screen shows up **go to http://localhost:5000/, Enter to unmount the docker after manual verification:**, 
+you can visit the url, once you want to close the container and clean up, press enter at the terminal
 
 ```terminal
 
-wsl2_user@DESKTOP-TO1N415:/mnt/f/GitRepos/ansible-sample-deployment$ ./test.sh
+wsl2_user@DESKTOP-TO1N415:/mnt/f/GitRepos/ansible-LogExAnWebApp-deployment$ ./test.sh
 BECOME password:
 
-PLAY [Provisioning docker container] ***********************************************************************************
-TASK [Gathering Facts] *************************************************************************************************
+PLAY [Provisioning docker container] ***********************************************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************************************************************
 ok: [127.0.0.1]
 
-TASK [setup - docker container with OpenSSH & Python Interpreter] ******************************************************
+TASK [setup - docker container with OpenSSH & Python Interpreter] ******************************************************************************************************
 changed: [127.0.0.1]
 
-TASK [Wait 300 seconds for port 22 to become open and contain "OpenSSH"] ***********************************************
+TASK [Wait 300 seconds for port 22 to become open and contain "OpenSSH"] ***********************************************************************************************
 ok: [127.0.0.1]
 
-PLAY [User definitions] ************************************************************************************************
-TASK [Gathering Facts] *************************************************************************************************
-[WARNING]: Platform linux on host vm01 is using the discovered Python interpreter at /usr/bin/python3.10, but future
-installation of another Python interpreter could change the meaning of that path. See https://docs.ansible.com/ansible-
-core/2.12/reference_appendices/interpreter_discovery.html for more information.
+PLAY [User definitions] ************************************************************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************************************************************
+[WARNING]: Platform linux on host vm01 is using the discovered Python interpreter at /usr/bin/python3.10, but future installation of another Python interpreter could
+change the meaning of that path. See https://docs.ansible.com/ansible-core/2.12/reference_appendices/interpreter_discovery.html for more information.
 ok: [vm01]
 
-TASK [create a new user] ***********************************************************************************************
+TASK [create a new user] ***********************************************************************************************************************************************
 changed: [vm01]
 
-PLAY [Connection & Version Check] **************************************************************************************
-TASK [Gathering Facts] *************************************************************************************************
+PLAY [Connection & Version Check] **************************************************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************************************************************
 ok: [vm01]
 
-TASK [Ping my hosts] ***************************************************************************************************
+TASK [Ping my hosts] ***************************************************************************************************************************************************
 ok: [vm01]
 
-TASK [Print message] ***************************************************************************************************
+TASK [Print message] ***************************************************************************************************************************************************
 ok: [vm01] => {
     "msg": "Hello world"
 }
 
-TASK [Print version] ***************************************************************************************************
+TASK [Print version] ***************************************************************************************************************************************************
 changed: [vm01]
 
-TASK [ansible.builtin.debug] *******************************************************************************************
+TASK [ansible.builtin.debug] *******************************************************************************************************************************************
 ok: [vm01] => {
     "msg": [
         "NAME=\"Alpine Linux\"",
@@ -62,70 +66,72 @@ ok: [vm01] => {
     ]
 }
 
-PLAY [project setup] ***************************************************************************************************
-TASK [Gathering Facts] *************************************************************************************************
+PLAY [project setup] ***************************************************************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************************************************************
 ok: [vm01]
 
-TASK [copy files] ******************************************************************************************************
+TASK [copy files] ******************************************************************************************************************************************************
 changed: [vm01]
 
-PLAY [project environment setup] ***************************************************************************************
-TASK [Gathering Facts] *************************************************************************************************
+PLAY [project environment setup] ***************************************************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************************************************************
 ok: [vm01]
 
-TASK [installation of libraries from PYPI] *****************************************************************************
+TASK [installation of libraries from PYPI] *****************************************************************************************************************************
 changed: [vm01]
 
-TASK [ansible.builtin.debug] *******************************************************************************************
+TASK [ansible.builtin.debug] *******************************************************************************************************************************************
 ok: [vm01] => {
     "msg": [
         "mode of 'install.sh' changed to 0755 (rwxr-xr-x)",
         "Collecting fastapi",
         "  Downloading fastapi-0.85.1-py3-none-any.whl (55 kB)",
-        "     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 55.4/55.4 kB 229.2 kB/s eta 0:00:00",
+        "     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 55.4/55.4 kB 222.6 kB/s eta 0:00:00",
         "Collecting pydantic!=1.7,!=1.7.1,!=1.7.2,!=1.7.3,!=1.8,!=1.8.1,<2.0.0,>=1.6.2",
         "  Downloading pydantic-1.10.2-cp310-cp310-musllinux_1_1_x86_64.whl (12.9 MB)",
-        "     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.9/12.9 MB 4.8 MB/s eta 0:00:00",
+        "     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.9/12.9 MB 1.9 MB/s eta 0:00:00",
         "Collecting starlette==0.20.4",
         "  Downloading starlette-0.20.4-py3-none-any.whl (63 kB)",
-        "     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 63.6/63.6 kB 762.1 kB/s eta 0:00:00",
+        "     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 63.6/63.6 kB 437.7 kB/s eta 0:00:00",
         "Collecting anyio<5,>=3.4.0",
         "  Downloading anyio-3.6.2-py3-none-any.whl (80 kB)",
-        "     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 80.6/80.6 kB 934.2 kB/s eta 0:00:00",
+        "     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 80.6/80.6 kB 683.8 kB/s eta 0:00:00",
         "Collecting typing-extensions>=4.1.0",
         "  Downloading typing_extensions-4.4.0-py3-none-any.whl (26 kB)",
         "Collecting idna>=2.8",
         "  Downloading idna-3.4-py3-none-any.whl (61 kB)",
-        "     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 61.5/61.5 kB 938.4 kB/s eta 0:00:00",
+        "     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 61.5/61.5 kB 465.6 kB/s eta 0:00:00",
         "Collecting sniffio>=1.1",
         "  Downloading sniffio-1.3.0-py3-none-any.whl (10 kB)",
         "Installing collected packages: typing-extensions, sniffio, idna, pydantic, anyio, starlette, fastapi",
         "Successfully installed anyio-3.6.2 fastapi-0.85.1 idna-3.4 pydantic-1.10.2 sniffio-1.3.0 starlette-0.20.4 typing-extensions-4.4.0",
         "Collecting Flask",
         "  Downloading Flask-2.2.2-py3-none-any.whl (101 kB)",
-        "     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 101.5/101.5 kB 790.3 kB/s eta 0:00:00",
-        "Collecting Werkzeug>=2.2.2",
-        "  Downloading Werkzeug-2.2.2-py3-none-any.whl (232 kB)",
-        "     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 232.7/232.7 kB 1.8 MB/s eta 0:00:00",
-        "Collecting itsdangerous>=2.0",
-        "  Downloading itsdangerous-2.1.2-py3-none-any.whl (15 kB)",
+        "     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 101.5/101.5 kB 724.3 kB/s eta 0:00:00",
         "Collecting Jinja2>=3.0",
         "  Downloading Jinja2-3.1.2-py3-none-any.whl (133 kB)",
-        "     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 133.1/133.1 kB 1.4 MB/s eta 0:00:00",
+        "     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 133.1/133.1 kB 1.7 MB/s eta 0:00:00",
+        "Collecting itsdangerous>=2.0",
+        "  Downloading itsdangerous-2.1.2-py3-none-any.whl (15 kB)",
+        "Collecting Werkzeug>=2.2.2",
+        "  Downloading Werkzeug-2.2.2-py3-none-any.whl (232 kB)",
+        "     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 232.7/232.7 kB 1.7 MB/s eta 0:00:00",
         "Collecting click>=8.0",
         "  Downloading click-8.1.3-py3-none-any.whl (96 kB)",
-        "     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 96.6/96.6 kB 1.3 MB/s eta 0:00:00",
+        "     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 96.6/96.6 kB 1.1 MB/s eta 0:00:00",
         "Collecting MarkupSafe>=2.0",
         "  Downloading MarkupSafe-2.1.1-cp310-cp310-musllinux_1_1_x86_64.whl (29 kB)",
         "Installing collected packages: MarkupSafe, itsdangerous, click, Werkzeug, Jinja2, Flask",
         "Successfully installed Flask-2.2.2 Jinja2-3.1.2 MarkupSafe-2.1.1 Werkzeug-2.2.2 click-8.1.3 itsdangerous-2.1.2",
         "Collecting uvicorn",
         "  Downloading uvicorn-0.19.0-py3-none-any.whl (56 kB)",
-        "     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 56.6/56.6 kB 501.5 kB/s eta 0:00:00",
-        "Requirement already satisfied: click>=7.0 in /usr/lib/python3.10/site-packages (from uvicorn) (8.1.3)",
+        "     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 56.6/56.6 kB 552.6 kB/s eta 0:00:00",
         "Collecting h11>=0.8",
         "  Downloading h11-0.14.0-py3-none-any.whl (58 kB)",
-        "     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 58.3/58.3 kB 612.8 kB/s eta 0:00:00",
+        "     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 58.3/58.3 kB 666.2 kB/s eta 0:00:00",
+        "Requirement already satisfied: click>=7.0 in /usr/lib/python3.10/site-packages (from uvicorn) (8.1.3)",
         "Installing collected packages: h11, uvicorn",
         "Successfully installed h11-0.14.0 uvicorn-0.19.0",
         "(1/8) Installing py3-six (1.16.0-r1)",
@@ -139,7 +145,7 @@ ok: [vm01] => {
         "OK: 179 MiB in 44 packages",
         "Collecting lark-parser",
         "  Downloading lark_parser-0.12.0-py2.py3-none-any.whl (103 kB)",
-        "     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 103.5/103.5 kB 555.0 kB/s eta 0:00:00",
+        "     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 103.5/103.5 kB 1.1 MB/s eta 0:00:00",
         "Installing collected packages: lark-parser",
         "Successfully installed lark-parser-0.12.0",
         "Collecting LogExAn",
@@ -195,17 +201,17 @@ ok: [vm01] => {
         "OK: 296 MiB in 88 packages",
         "Collecting gunicorn",
         "  Downloading gunicorn-20.1.0-py3-none-any.whl (79 kB)",
-        "     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 79.5/79.5 kB 71.2 kB/s eta 0:00:00",
+        "     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 79.5/79.5 kB 693.5 kB/s eta 0:00:00",
         "Requirement already satisfied: setuptools>=3.0 in /usr/lib/python3.10/site-packages (from gunicorn) (65.5.0)",
         "Installing collected packages: gunicorn",
         "Successfully installed gunicorn-20.1.0"
     ]
 }
 
-TASK [run API] *********************************************************************************************************
+TASK [run API] *********************************************************************************************************************************************************
 changed: [vm01]
 
-TASK [ansible.builtin.debug] *******************************************************************************************
+TASK [ansible.builtin.debug] *******************************************************************************************************************************************
 ok: [vm01] => {
     "msg": [
         "mode of 'run_fastapi.sh' changed to 0755 (rwxr-xr-x)",
@@ -213,10 +219,10 @@ ok: [vm01] => {
     ]
 }
 
-TASK [run UI] **********************************************************************************************************
+TASK [run UI] **********************************************************************************************************************************************************
 changed: [vm01]
 
-TASK [ansible.builtin.debug] *******************************************************************************************
+TASK [ansible.builtin.debug] *******************************************************************************************************************************************
 ok: [vm01] => {
     "msg": [
         "mode of 'run_flask.sh' changed to 0755 (rwxr-xr-x)",
@@ -224,61 +230,62 @@ ok: [vm01] => {
     ]
 }
 
-TASK [run Status] ******************************************************************************************************
+TASK [run Status] ******************************************************************************************************************************************************
 changed: [vm01]
 
-TASK [ansible.builtin.debug] *******************************************************************************************
+TASK [ansible.builtin.debug] *******************************************************************************************************************************************
 ok: [vm01] => {
     "msg": [
         "Active Internet connections (servers and established)",
         "Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    ",
+        "tcp        0      0 127.0.0.1:8000          0.0.0.0:*               LISTEN      1164/python",
+        "tcp        0      0 0.0.0.0:5000            0.0.0.0:*               LISTEN      1200/python",
         "tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      1/sshd -D -e [liste",
-        "tcp        0      0 127.0.0.1:8000          0.0.0.0:*               LISTEN      2809/python",
-        "tcp        0      0 0.0.0.0:5000            0.0.0.0:*               LISTEN      2845/python",
-        "tcp        0      0 172.17.0.2:22           172.17.0.1:39578        ESTABLISHED 10/sshd: openssh [p",
+        "tcp        0      0 172.17.0.2:22           172.17.0.1:33980        ESTABLISHED 11/sshd: openssh [p",
         "tcp        0      0 :::22                   :::*                    LISTEN      1/sshd -D -e [liste",
         "Active UNIX domain sockets (servers and established)",
         "Proto RefCnt Flags       Type       State         I-Node PID/Program name    Path",
-        "unix  3      [ ]         STREAM     CONNECTED      42696 -                   ",
-        "unix  2      [ ]         STREAM     CONNECTED      45531 10/sshd: openssh [p ",
-        "unix  3      [ ]         STREAM     CONNECTED     135130 2816/python         ",
-        "unix  3      [ ]         STREAM     CONNECTED     135129 2816/python         ",
-        "unix  3      [ ]         STREAM     CONNECTED      42697 10/sshd: openssh [p ",
-        "unix  2      [ ]         DGRAM                    133959 2877/python3.10     ",
-        "unix  3      [ ]         STREAM     CONNECTED     133065 2814/python         ",
-        "unix  3      [ ]         STREAM     CONNECTED     133050 2812/python         ",
-        "unix  3      [ ]         STREAM     CONNECTED     133051 2812/python         ",
-        "unix  3      [ ]         STREAM     CONNECTED     133070 2813/python         ",
-        "unix  3      [ ]         STREAM     CONNECTED     133066 2814/python         ",
-        "unix  3      [ ]         STREAM     CONNECTED     133069 2813/python         "
+        "unix  2      [ ]         DGRAM                     72867 1219/python3.10     ",
+        "unix  3      [ ]         STREAM     CONNECTED      72854 1167/python         ",
+        "unix  3      [ ]         STREAM     CONNECTED      72865 1178/python         ",
+        "unix  3      [ ]         STREAM     CONNECTED      72617 1169/python         ",
+        "unix  3      [ ]         STREAM     CONNECTED      72853 1167/python         ",
+        "unix  3      [ ]         STREAM     CONNECTED      38179 11/sshd: openssh [p ",
+        "unix  3      [ ]         STREAM     CONNECTED      72618 1169/python         ",
+        "unix  2      [ ]         STREAM     CONNECTED      40037 11/sshd: openssh [p ",
+        "unix  3      [ ]         STREAM     CONNECTED      72866 1178/python         ",
+        "unix  3      [ ]         STREAM     CONNECTED      38178 -                   ",
+        "unix  3      [ ]         STREAM     CONNECTED      70623 1179/python         ",
+        "unix  3      [ ]         STREAM     CONNECTED      70622 1179/python         "
     ]
 }
 
-PLAY [project open with url] *******************************************************************************************
-TASK [Gathering Facts] *************************************************************************************************
+PLAY [project open with url] *******************************************************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************************************************************
 ok: [127.0.0.1]
 
-TASK [Prompt for docker unmount] ***************************************************************************************
+TASK [Prompt for docker unmount] ***************************************************************************************************************************************
 [Prompt for docker unmount]
 go to http://localhost:5000/, Enter to unmount the docker after manual verification:
-^M
+^Mok: [127.0.0.1]
+
+PLAY [Removing docker container] ***************************************************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************************************************************
 ok: [127.0.0.1]
 
-PLAY [Removing docker container] ***************************************************************************************
-TASK [Gathering Facts] *************************************************************************************************
-ok: [127.0.0.1]
-
-TASK [teardown - docker container with OpenSSH & Python Interpreter] ***************************************************
+TASK [teardown - docker container with OpenSSH & Python Interpreter] ***************************************************************************************************
 changed: [127.0.0.1]
 
-TASK [Waits for port 22 of any IP to close active connections, don't start checking for 10 seconds] ********************
+TASK [Waits for port 22 of any IP to close active connections, don't start checking for 10 seconds] ********************************************************************
 ok: [127.0.0.1]
 
-PLAY RECAP *************************************************************************************************************
+PLAY RECAP *************************************************************************************************************************************************************
 127.0.0.1                  : ok=8    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 vm01                       : ok=18   changed=7    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 
-wsl2_user@DESKTOP-TO1N415:/mnt/f/GitRepos/ansible-sample-deployment$
+wsl2_user@DESKTOP-TO1N415:/mnt/f/GitRepos/ansible-LogExAnWebApp-deployment$
 
 ```
 
