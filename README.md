@@ -6,7 +6,7 @@
 
 - open wsl in windows or open a terminal in linux and run **./test.sh** script from the root folder
 
-![](https://github.com/Palani-SN/ansible-LogExAnWebApp-deployment/blob/main/images/root_folder.JPG?raw=true)
+![](https://github.com/Palani-SN/ansible-LogExAnWebApp-deployment/blob/main/images/Root_Folder_Path.JPG?raw=true)
 
 - enter the **password** for the BECOME password, output of the **./test.sh** is shown below, 
 when the screen shows up **go to http://localhost:5000/, Enter to unmount the docker after manual verification:**, 
@@ -293,5 +293,5 @@ wsl2_user@DESKTOP-TO1N415:/mnt/f/GitRepos/ansible-LogExAnWebApp-deployment$
 
 	- example usage : ./setup.sh & ./teardown.sh
 	
-	![](https://github.com/Palani-SN/ansible-LogExAnWebApp-deployment/blob/main/images/setup_teardown.JPG?raw=true)
+	![](https://github.com/Palani-SN/ansible-LogExAnWebApp-deployment/blob/main/images/Setup_Teardown_Example.JPG?raw=true)
 	
